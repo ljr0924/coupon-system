@@ -1,0 +1,12 @@
+version: '1'
+services:
+  web:
+    build: ./apis
+    ports:
+      - "8080:8080"
+  redis:
+    image: "redis:alpine"
+  mysql:
+    image: "mysql"
+  mongodb:
+    image: "mongo"
