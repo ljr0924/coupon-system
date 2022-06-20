@@ -8,5 +8,9 @@ services:
     image: "redis:alpine"
   mysql:
     image: "mysql"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=test123123"
+      - "MYSQL_DATABASE=coupon"
+      - "TZ=Asia/Shanghai"
   mongodb:
     image: "mongo"

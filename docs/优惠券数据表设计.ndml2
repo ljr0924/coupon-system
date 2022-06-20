@@ -1,0 +1,1049 @@
+{
+  "paper": {
+    "name": "A4",
+    "leftMargin": 0.5,
+    "rightMargin": 0.5,
+    "topMargin": 0.5,
+    "bottomMargin": 0.5,
+    "isPortriat": true
+  },
+  "modelVersion": 2.01,
+  "defaultSchema": "default",
+  "server": {
+    "objectType": "Server_LOGICAL",
+    "name": "Default",
+    "schemas": [
+      {
+        "objectType": "Schema_LOGICAL",
+        "name": "default",
+        "tables": [
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "coupon_platform",
+            "comment": "平台主体，接口调用方",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "access_key",
+                "type": "CHAR VARYING",
+                "length": 32,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Empty",
+                "defaultValue": "",
+                "comment": "访问使用的key",
+                "oldName": "access_key"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "secret",
+                "type": "varchar",
+                "length": 32,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Empty",
+                "defaultValue": "",
+                "comment": "密钥",
+                "oldName": "secret"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "join_time",
+                "type": "DATE",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "加入时间",
+                "oldName": "join_time"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "is_inner",
+                "type": "tinyint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "是否为内部平台，0：外部，1：内部",
+                "oldName": "is_inner"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "is_enable",
+                "type": "tinyint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "1",
+                "comment": "是否启用，1：启用，0：禁用",
+                "oldName": "is_enable"
+              }
+            ],
+            "foreignKeys": [],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "id"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "coupon_user_code",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "coupon_id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "coupon_code.id",
+                "oldName": "coupon_id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "platform_id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "coupon_platform.id",
+                "oldName": "platform_id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "user_id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "",
+                "oldName": "user_id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "create_time",
+                "type": "bigint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "用户与优惠券绑定的时间",
+                "oldName": "create_time"
+              }
+            ],
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "",
+                "fields": [
+                  "platform_id"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "coupon_platform",
+                "referencedFields": [
+                  "id"
+                ],
+                "sourceCardinality": "ManyRelationship",
+                "targetCardinality": "ManyRelationship",
+                "comment": "",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "",
+                "fields": [
+                  "coupon_id"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "coupon_code",
+                "referencedFields": [
+                  "id"
+                ],
+                "sourceCardinality": "OneAndOnlyOneRelationship",
+                "targetCardinality": "OneAndOnlyOneRelationship",
+                "comment": "",
+                "oldName": ""
+              }
+            ],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "id"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "coupon_pool",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "id",
+                "type": "int",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "title",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Empty",
+                "defaultValue": "",
+                "comment": "优惠券标题",
+                "oldName": "title"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "img_url",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Empty",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "img_url"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "content",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Empty",
+                "defaultValue": "",
+                "comment": "优惠券说明",
+                "oldName": "content"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "use_time_type",
+                "type": "tinyint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "过期时间计算类型，1：相对时间，领取后多少天，2：固定时间，某个时间段",
+                "oldName": "use_time_type"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "use_time_start",
+                "type": "bigint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "可使用开始时间",
+                "oldName": "use_time_start"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "use_time_end",
+                "type": "bigint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "可使用结束时间",
+                "oldName": "use_time_end"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "use_days",
+                "type": "int",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "N天后过期",
+                "oldName": "use_days"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "get_start_time",
+                "type": "bigint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "可领取开始时间",
+                "oldName": "get_start_time"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "get_end_time",
+                "type": "bigint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "可领取结束时间",
+                "oldName": "get_end_time"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "count",
+                "type": "int",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "优惠券总数，0为无限",
+                "oldName": "count"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "get_count",
+                "type": "int",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "已领取总数",
+                "oldName": "get_count"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "create_time",
+                "type": "bitint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "优惠券池创建时间",
+                "oldName": "create_time"
+              }
+            ],
+            "foreignKeys": [],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "id"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "coupon_code",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "coupon_pool_id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "coupon_pool_id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "code",
+                "type": "CHAR VARYING",
+                "length": 128,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "code"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "status",
+                "type": "tinyint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "优惠券当前状态，0：未知，1：冻结，2：已使用，3：已过期",
+                "oldName": "status"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "use_start_time",
+                "type": "bigint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "可使用开始时间",
+                "oldName": "use_start_time"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "use_end_time",
+                "type": "bigint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "可使用结束时间",
+                "oldName": "use_end_time"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "create_time",
+                "type": "bigint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "创建时间",
+                "oldName": "create_time"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "update_time",
+                "type": "bigint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "更新时间",
+                "oldName": "update_time"
+              }
+            ],
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "",
+                "fields": [
+                  "coupon_pool_id"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "coupon_pool",
+                "referencedFields": [
+                  "id"
+                ],
+                "sourceCardinality": "ManyRelationship",
+                "targetCardinality": "OneAndOnlyOneRelationship",
+                "comment": "",
+                "oldName": ""
+              }
+            ],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "id"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "coupon_statistics",
+            "comment": "统计数据表",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "coupon_pool_id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "coupon_pool_id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "use_percent",
+                "type": "decimal",
+                "length": 10,
+                "decimals": 2,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "使用比例",
+                "oldName": "use_percent"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "get_percent",
+                "type": "decimal",
+                "length": 10,
+                "decimals": 2,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "0",
+                "comment": "领取占比",
+                "oldName": "get_percent"
+              }
+            ],
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "",
+                "fields": [
+                  "coupon_pool_id"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "coupon_pool",
+                "referencedFields": [
+                  "id"
+                ],
+                "sourceCardinality": "OneAndOnlyOneRelationship",
+                "targetCardinality": "OneAndOnlyOneRelationship",
+                "comment": "",
+                "oldName": ""
+              }
+            ],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "id"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "coupon_event_report",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "platform_id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "platform_id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "operator_id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "operator_id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "dest_id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "dest_id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "operation_type",
+                "type": "tinyint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "操作类型",
+                "oldName": "operation_type"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "operation_desc",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Empty",
+                "defaultValue": "",
+                "comment": "操作描述",
+                "oldName": "operation_desc"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "status",
+                "type": "tinyint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "目标状态值",
+                "oldName": "status"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "desc",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "事件描述",
+                "oldName": "desc"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "create_time",
+                "type": "bigint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "操作时间",
+                "oldName": "create_time"
+              }
+            ],
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "",
+                "fields": [
+                  "dest_id"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "coupon_user_code",
+                "referencedFields": [
+                  "id"
+                ],
+                "sourceCardinality": "ManyRelationship",
+                "targetCardinality": "OneAndOnlyOneRelationship",
+                "comment": "",
+                "oldName": ""
+              }
+            ],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "id"
+              ],
+              "oldName": ""
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "name": "coupon",
+      "paperWidth": 2,
+      "paperHeight": 1,
+      "tableFont": "Arial Unicode MS",
+      "tableFontSize": 14,
+      "isBalckWhite": false,
+      "showDBSchemaName": false,
+      "showViewRelations": true,
+      "notation": "default",
+      "showFieldComment": true,
+      "showTableComment": false,
+      "shapes": [
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "coupon_platform",
+          "x": 30,
+          "y": 100,
+          "width": 349,
+          "height": 177,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "coupon_pool",
+          "x": 1310,
+          "y": 30,
+          "width": 600,
+          "height": 324,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "coupon_code",
+          "x": 780,
+          "y": 80,
+          "width": 472,
+          "height": 219,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "coupon_user_code",
+          "x": 430,
+          "y": 110,
+          "width": 305,
+          "height": 156,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "coupon_statistics",
+          "x": 1960,
+          "y": 120,
+          "width": 238,
+          "height": 135,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "coupon_event_report",
+          "x": 430,
+          "y": 310,
+          "width": 304,
+          "height": 240,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        }
+      ],
+      "layers": [],
+      "relations": [
+        {
+          "name": "",
+          "sourceTableName": "coupon_user_code",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 415,
+              "y": 190
+            },
+            {
+              "x": 394,
+              "y": 190
+            }
+          ],
+          "label": {
+            "x": 425,
+            "y": 151,
+            "width": 50,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "",
+          "sourceTableName": "coupon_user_code",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 750,
+              "y": 190
+            },
+            {
+              "x": 765,
+              "y": 190
+            }
+          ],
+          "label": {
+            "x": 690,
+            "y": 151,
+            "width": 50,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "",
+          "sourceTableName": "coupon_code",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 1267,
+              "y": 190
+            },
+            {
+              "x": 1295,
+              "y": 190
+            }
+          ],
+          "label": {
+            "x": 1207,
+            "y": 151,
+            "width": 50,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "",
+          "sourceTableName": "coupon_statistics",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 1945,
+              "y": 190
+            },
+            {
+              "x": 1925,
+              "y": 190
+            }
+          ],
+          "label": {
+            "x": 1905,
+            "y": 151,
+            "width": 50,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "",
+          "sourceTableName": "coupon_event_report",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 570,
+              "y": 295
+            },
+            {
+              "x": 570,
+              "y": 281
+            }
+          ],
+          "label": {
+            "x": 572,
+            "y": 264,
+            "width": 50,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        }
+      ],
+      "viewRelations": []
+    }
+  ]
+}
