@@ -647,169 +647,6 @@
           },
           {
             "objectType": "Table_LOGICAL",
-            "name": "coupon_rule",
-            "comment": "",
-            "oldName": "",
-            "fields": [
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "id",
-                "type": "INTEGER",
-                "length": 0,
-                "decimals": 0,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "",
-                "oldName": "id"
-              },
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "coupon_type",
-                "type": "tinyint",
-                "length": 0,
-                "decimals": 0,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "优惠券种类，0-未知，1-平台券，2-商家券，3-商品券",
-                "oldName": "coupon_type"
-              },
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "channel",
-                "type": "tinyint",
-                "length": 0,
-                "decimals": 0,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "使用渠道，0-未知，1-app，2-小程序，3-web，4-h5",
-                "oldName": "channel"
-              },
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "pay",
-                "type": "tinyint",
-                "length": 0,
-                "decimals": 0,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "支付方式，0-未知，1-微信支付，2-支付宝，3-银行卡",
-                "oldName": "pay"
-              },
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "region_province",
-                "type": "int",
-                "length": 0,
-                "decimals": 0,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "地区-市",
-                "oldName": "region_province"
-              },
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "region_city",
-                "type": "int",
-                "length": 0,
-                "decimals": 0,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "地区-市",
-                "oldName": "region_city"
-              },
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "region_district",
-                "type": "int",
-                "length": 0,
-                "decimals": 0,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "地区-区",
-                "oldName": "region_district"
-              },
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "is_exclude",
-                "type": "tinyint",
-                "length": 0,
-                "decimals": 0,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "是否互斥",
-                "oldName": "is_exclude"
-              },
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "with_amount",
-                "type": "decimal",
-                "length": 10,
-                "decimals": 2,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "使用门槛",
-                "oldName": "with_amount"
-              },
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "sub_amount",
-                "type": "decimal",
-                "length": 10,
-                "decimals": 2,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "满减金额",
-                "oldName": "sub_amount"
-              },
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "discount",
-                "type": "decimal",
-                "length": 3,
-                "decimals": 2,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "折扣, (0, 1]",
-                "oldName": "discount"
-              },
-              {
-                "objectType": "TableField_LOGICAL",
-                "name": "is_deleted",
-                "type": "tinyint",
-                "length": 0,
-                "decimals": 0,
-                "isNullable": false,
-                "defaultType": "None",
-                "defaultValue": "",
-                "comment": "是否删除",
-                "oldName": "is_deleted"
-              }
-            ],
-            "foreignKeys": [],
-            "indexes": [],
-            "uniques": [],
-            "primaryKey": {
-              "objectType": "PrimaryKey_LOGICAL",
-              "name": "",
-              "fields": [
-                "id"
-              ],
-              "oldName": ""
-            }
-          },
-          {
-            "objectType": "Table_LOGICAL",
             "name": "coupon_pool",
             "comment": "",
             "oldName": "",
@@ -1001,6 +838,169 @@
                 "oldName": ""
               }
             ],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "id"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "coupon_rule",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "id",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "coupon_type",
+                "type": "tinyint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "优惠券种类，0-未知，1-平台券，2-商家券，3-商品券",
+                "oldName": "coupon_type"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "channel",
+                "type": "tinyint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "使用渠道，0-未知，1-app，2-小程序，3-web，4-h5",
+                "oldName": "channel"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "pay",
+                "type": "tinyint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "支付方式，0-未知，1-微信支付，2-支付宝，3-银行卡",
+                "oldName": "pay"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "region_province",
+                "type": "INT",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "地区-市",
+                "oldName": "region_province"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "region_city",
+                "type": "INT",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "地区-市",
+                "oldName": "region_city"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "region_district",
+                "type": "INT",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "地区-区",
+                "oldName": "region_district"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "is_exclude",
+                "type": "tinyint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "是否互斥",
+                "oldName": "is_exclude"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "with_amount",
+                "type": "decimal",
+                "length": 10,
+                "decimals": 2,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "使用门槛",
+                "oldName": "with_amount"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "sub_amount",
+                "type": "decimal",
+                "length": 10,
+                "decimals": 2,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "满减金额",
+                "oldName": "sub_amount"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "discount",
+                "type": "decimal",
+                "length": 3,
+                "decimals": 2,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "折扣, (0, 1]",
+                "oldName": "discount"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "is_deleted",
+                "type": "tinyint",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "是否删除",
+                "oldName": "is_deleted"
+              }
+            ],
+            "foreignKeys": [],
             "indexes": [],
             "uniques": [],
             "primaryKey": {
