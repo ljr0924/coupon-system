@@ -1,21 +1,20 @@
-ALTER TABLE `coupon`.`coupon_code` DROP INDEX `idx_coupon_pool_id`;
-ALTER TABLE `coupon`.`coupon_event_report` DROP INDEX `idx_user_id`;
-ALTER TABLE `coupon`.`coupon_pool` DROP INDEX `idx_rule_id`;
-ALTER TABLE `coupon`.`coupon_rule` DROP INDEX ``;
-ALTER TABLE `coupon`.`coupon_statistics` DROP INDEX `idx_coupon_id`;
-ALTER TABLE `coupon`.`coupon_user` DROP INDEX `idx_platform_id`;
-ALTER TABLE `coupon`.`coupon_user_code` DROP INDEX `idx_user_id`;
+ALTER TABLE `coupon_code` DROP INDEX `idx_coupon_pool_id`;
+ALTER TABLE `coupon_event_report` DROP INDEX `idx_user_id`;
+ALTER TABLE `coupon_pool` DROP INDEX `idx_rule_id`;
+ALTER TABLE `coupon_statistics` DROP INDEX `idx_coupon_id`;
+ALTER TABLE `coupon_user` DROP INDEX `idx_platform_id`;
+ALTER TABLE `coupon_user_code` DROP INDEX `idx_user_id`;
 
-DROP TABLE IF EXISTS `coupon`.`coupon_code`;
-DROP TABLE IF EXISTS `coupon`.`coupon_event_report`;
-DROP TABLE IF EXISTS `coupon`.`coupon_platform`;
-DROP TABLE IF EXISTS `coupon`.`coupon_pool`;
-DROP TABLE IF EXISTS `coupon`.`coupon_rule`;
-DROP TABLE IF EXISTS `coupon`.`coupon_statistics`;
-DROP TABLE IF EXISTS `coupon`.`coupon_user`;
-DROP TABLE IF EXISTS `coupon`.`coupon_user_code`;
+DROP TABLE IF EXISTS `coupon_code`;
+DROP TABLE IF EXISTS `coupon_event_report`;
+DROP TABLE IF EXISTS `coupon_platform`;
+DROP TABLE IF EXISTS `coupon_pool`;
+DROP TABLE IF EXISTS `coupon_rule`;
+DROP TABLE IF EXISTS `coupon_statistics`;
+DROP TABLE IF EXISTS `coupon_user`;
+DROP TABLE IF EXISTS `coupon_user_code`;
 
-CREATE TABLE `coupon`.`coupon_code`  (
+CREATE TABLE `coupon_code`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `coupon_pool_id` int NOT NULL COMMENT 'coupon_pool.id',
   `code` varchar(128) NOT NULL COMMENT '优惠券码',
@@ -28,7 +27,7 @@ CREATE TABLE `coupon`.`coupon_code`  (
   INDEX `idx_coupon_pool_id`(`coupon_pool_id`) USING BTREE
 ) COMMENT = '优惠券码表';
 
-CREATE TABLE `coupon`.`coupon_event_report`  (
+CREATE TABLE `coupon_event_report`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL COMMENT 'coupon_user.id',
   `dest_id` int NOT NULL COMMENT '操作对象id',
@@ -41,17 +40,18 @@ CREATE TABLE `coupon`.`coupon_event_report`  (
   INDEX `idx_user_id`(`user_id`) USING BTREE
 ) COMMENT = '事件流水表';
 
-CREATE TABLE `coupon`.`coupon_platform`  (
+CREATE TABLE `coupon_platform`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `access_key` varchar(32) NOT NULL DEFAULT '' COMMENT '访问使用的key',
   `secret` varchar(32) NOT NULL DEFAULT '' COMMENT '密钥',
-  `join_time` date NOT NULL DEFAULT 0 COMMENT '加入时间',
+  `join_time` int NOT NULL DEFAULT 0 COMMENT '加入时间',
   `is_inner` tinyint NOT NULL DEFAULT 0 COMMENT '是否为内部平台，0：外部，1：内部',
   `is_enable` tinyint NOT NULL DEFAULT 1 COMMENT '是否启用，1：启用，0：禁用',
+  `update_time` int NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) COMMENT = '优惠券平台主体，接口调用方';
 
-CREATE TABLE `coupon`.`coupon_pool`  (
+CREATE TABLE `coupon_pool`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `rule_id` int NOT NULL,
   `use_time_type` tinyint NOT NULL DEFAULT 0 COMMENT '过期时间计算类型，1：相对时间，领取后多少天，2：固定时间，某个时间段',
@@ -70,7 +70,7 @@ CREATE TABLE `coupon`.`coupon_pool`  (
   INDEX `idx_rule_id`(`rule_id`) USING BTREE
 ) COMMENT = '优惠券池表';
 
-CREATE TABLE `coupon`.`coupon_rule`  (
+CREATE TABLE `coupon_rule`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `coupon_type` tinyint NOT NULL COMMENT '优惠券种类，0-未知，1-平台券，2-商家券，3-商品券',
   `channel` tinyint NOT NULL COMMENT '使用渠道，0-未知，1-app，2-小程序，3-web，4-h5',
@@ -82,21 +82,24 @@ CREATE TABLE `coupon`.`coupon_rule`  (
   `with_amount` decimal(10, 2) NOT NULL COMMENT '使用门槛',
   `sub_amount` decimal(10, 2) NOT NULL COMMENT '满减金额',
   `discount` decimal(3, 2) NOT NULL COMMENT '折扣, (0, 1]',
-  `is_deleted` longtext NOT NULL COMMENT '是否删除',
-  PRIMARY KEY (`id`),
-  INDEX()
+  `create_time` int NOT NULL COMMENT '创建时间',
+  `update_time` int NOT NULL COMMENT '更新时间',
+  `is_deleted` int NOT NULL COMMENT '是否删除',
+  PRIMARY KEY (`id`)
 ) COMMENT = '优惠券规则表';
 
-CREATE TABLE `coupon`.`coupon_statistics`  (
+CREATE TABLE `coupon_statistics`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `coupon_pool_id` int NOT NULL COMMENT 'coupon_pool.id',
-  `use_percent` decimal(10, 2) NOT NULL DEFAULT 0 COMMENT '使用比例',
-  `get_percent` decimal(10, 2) NOT NULL DEFAULT 0 COMMENT '领取占比',
+  `use_percent` decimal(3, 2) NOT NULL DEFAULT 0 COMMENT '使用比例',
+  `get_percent` decimal(3, 2) NOT NULL DEFAULT 0 COMMENT '领取占比',
+  `create_time` int NOT NULL COMMENT '创建时间',
+  `update_time` int NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   INDEX `idx_coupon_id`(`coupon_pool_id`) USING BTREE
 ) COMMENT = '优惠券统计数据表';
 
-CREATE TABLE `coupon`.`coupon_user`  (
+CREATE TABLE `coupon_user`  (
   `id` int NOT NULL,
   `platform_id` int NOT NULL COMMENT 'coupon_platform.id',
   `user_id` int NOT NULL COMMENT '用户id',
@@ -107,7 +110,7 @@ CREATE TABLE `coupon`.`coupon_user`  (
   INDEX `idx_platform_id`(`platform_id`) USING BTREE
 ) COMMENT = '各平台用户';
 
-CREATE TABLE `coupon`.`coupon_user_code`  (
+CREATE TABLE `coupon_user_code`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL DEFAULT 0 COMMENT 'coupon_user.id',
   `coupon_id` int NOT NULL COMMENT 'coupon_code.id',
