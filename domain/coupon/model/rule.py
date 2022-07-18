@@ -1,9 +1,10 @@
+import datetime
 from decimal import Decimal
 
 from pydantic import BaseModel
 
 
-class RuleModel(BaseModel):
+class CouponRule(BaseModel):
     id: int
     coupon_type: int
     channel: int
@@ -15,6 +16,6 @@ class RuleModel(BaseModel):
     with_amount: Decimal
     sub_amount: Decimal
     discount: Decimal
-    create_time: int
-    update_time: int
+    create_time: datetime.datetime
+    update_time: datetime.datetime
     is_deleted: int

@@ -1,7 +1,9 @@
+import datetime
+
 from pydantic import BaseModel
 
 
-class PoolModel(BaseModel):
+class CouponPool(BaseModel):
     id: int
     rule_id: int
     use_time_type: int
@@ -13,6 +15,6 @@ class PoolModel(BaseModel):
     count: int
     get_count: int
     is_enable: int
-    create_time: int
-    update_time: int
+    create_time: datetime.datetime
+    update_time: datetime.datetime
     is_deleted: int

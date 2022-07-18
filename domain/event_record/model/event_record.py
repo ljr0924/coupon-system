@@ -1,7 +1,9 @@
+import datetime
+
 from pydantic import BaseModel
 
 
-class EventModel(BaseModel):
+class CouponEventRecord(BaseModel):
     id: int
     user_id: int
     dest_id: int
@@ -9,4 +11,4 @@ class EventModel(BaseModel):
     operation_desc: str
     status: int
     desc: str
-    create_time: int
+    create_time: datetime.datetime
