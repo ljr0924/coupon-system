@@ -35,6 +35,7 @@ CREATE TABLE `coupon_event_record`  (
 
 CREATE TABLE `coupon_platform`  (
   `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '第三方名称',
   `access_key` varchar(32) NOT NULL DEFAULT '' COMMENT '访问使用的key',
   `secret` varchar(32) NOT NULL DEFAULT '' COMMENT '密钥',
   `join_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '加入时间',
@@ -46,7 +47,7 @@ CREATE TABLE `coupon_platform`  (
 
 CREATE TABLE `coupon_pool`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '规则名称',
+  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '券池名称',
   `rule_id` int NOT NULL COMMENT '规则id，coupon_rule.id',
   `use_time_type` tinyint NOT NULL DEFAULT 0 COMMENT '过期时间计算类型，1：相对时间，领取后多少天，2：固定时间，某个时间段',
   `use_time_start` int NOT NULL DEFAULT 0 COMMENT '可使用开始时间',
@@ -59,7 +60,7 @@ CREATE TABLE `coupon_pool`  (
   `is_enable` tinyint NOT NULL COMMENT '是否启用',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '优惠券池创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `is_deleted` tinyint NOT NULL COMMENT '是否删除',
+  `is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '是否删除',
   PRIMARY KEY (`id`),
   INDEX `idx_rule_id`(`rule_id`) USING BTREE
 ) COMMENT = '优惠券池表';
@@ -79,7 +80,7 @@ CREATE TABLE `coupon_rule`  (
   `discount` decimal(3, 2) NOT NULL COMMENT '折扣, (0, 1]',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `is_deleted` int NOT NULL COMMENT '是否删除',
+  `is_deleted` int NOT NULL DEFAULT 0 COMMENT '是否删除',
   PRIMARY KEY (`id`)
 ) COMMENT = '优惠券规则表';
 
@@ -95,12 +96,12 @@ CREATE TABLE `coupon_statistics`  (
 ) COMMENT = '优惠券统计数据表';
 
 CREATE TABLE `coupon_user`  (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `platform_id` int NOT NULL COMMENT 'coupon_platform.id',
   `user_id` int NOT NULL COMMENT '用户id',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `is_deleted` tinyint NOT NULL COMMENT '是否删除',
+  `is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '是否删除',
   PRIMARY KEY (`id`),
   INDEX `idx_platform_id`(`platform_id`) USING BTREE
 ) COMMENT = '各平台用户';
