@@ -1,11 +1,12 @@
 import datetime
+from typing import Optional
 
 from pydantic import BaseModel
 
 
 class CouponUserCode(BaseModel):
-    id: int
-    user_id: int
-    coupon_id: str
-    create_time: datetime.datetime
-    update_time: datetime.datetime
+    id: Optional[int]
+    user_id: Optional[int]
+    coupon_id: Optional[str]
+    create_time: Optional[datetime.datetime]
+    update_time: Optional[datetime.datetime]

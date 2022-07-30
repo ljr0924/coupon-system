@@ -1,13 +1,14 @@
 import datetime
 from decimal import Decimal
+from typing import Optional
 
 from pydantic import BaseModel
 
 
 class CouponStatistics(BaseModel):
-    id: int
-    coupon_pool_id: str
-    use_percent: Decimal
-    get_percent: Decimal
-    create_time: datetime.datetime
-    update_time: datetime.datetime
+    id: Optional[int]
+    coupon_pool_id: Optional[str]
+    use_percent: Optional[Decimal]
+    get_percent: Optional[Decimal]
+    create_time: Optional[datetime.datetime]
+    update_time: Optional[datetime.datetime]

@@ -1,21 +1,22 @@
 import datetime
 from decimal import Decimal
+from typing import Optional
 
 from pydantic import BaseModel
 
 
 class CouponRule(BaseModel):
-    id: int
-    coupon_type: int
-    channel: int
-    pay: int
-    region_province: int
-    region_city: int
-    region_district: int
-    is_exclude: int
-    with_amount: Decimal
-    sub_amount: Decimal
-    discount: Decimal
-    create_time: datetime.datetime
-    update_time: datetime.datetime
-    is_deleted: int
+    id: Optional[int]
+    coupon_type: Optional[int]
+    channel: Optional[int]
+    pay: Optional[int]
+    region_province: Optional[int]
+    region_city: Optional[int]
+    region_district: Optional[int]
+    is_exclude: Optional[int]
+    with_amount: Optional[Decimal]
+    sub_amount: Optional[Decimal]
+    discount: Optional[Decimal]
+    create_time: Optional[datetime.datetime]
+    update_time: Optional[datetime.datetime]
+    is_deleted: Optional[int]
