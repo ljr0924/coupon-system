@@ -30,3 +30,27 @@ update coupon_pool set name = '' where id = 1;
 -- 删除优惠券规则
 update coupon_pool set is_deleted = 1 where id = 1;
 
+-- 查询优惠券
+select coupon_pool_id, code, status, use_start_time, use_end_time from coupon_code where id = 1;
+
+-- 生成优惠券
+insert into coupon_code (coupon_pool_id, code, status, use_start_time, use_end_time) values ();
+
+-- 更新优惠券状态
+update coupon_code set status = 1 where id = 1;
+
+-- 删除优惠券
+delete from coupon_code where id = 1;
+
+-- 查询用户优惠券
+select coupon_id from coupon_user_code where user_id = 1;
+select coupon_pool_id, code, status, use_start_time, use_end_time from coupon_code where id = :coupon_id;
+select rule_id from coupon_pool where id = :coupon_pool_id;
+select * from coupon_rule where id = :rule_id;
+
+-- 优惠券绑定用户
+insert into coupon_user_code (user_id, coupon_id) values ();
+
+-- 用户与优惠券解绑
+delete from coupon_user_code where user_id = 1 and coupon_id = 1
+
