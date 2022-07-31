@@ -8,6 +8,9 @@ from pydantic import BaseModel
 class CouponRule(BaseModel):
     id: Optional[int]
     coupon_type: Optional[int]
+    platform_id: Optional[int]
+    merchant_id: Optional[int]
+    product_id: Optional[int]
     channel: Optional[int]
     pay: Optional[int]
     region_province: Optional[int]
