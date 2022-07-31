@@ -1,17 +1,15 @@
 DROP TABLE IF EXISTS `coupon_code`;
 DROP TABLE IF EXISTS `coupon_event_record`;
-DROP TABLE IF EXISTS `coupon_platform`;
 DROP TABLE IF EXISTS `coupon_pool`;
 DROP TABLE IF EXISTS `coupon_rule`;
 DROP TABLE IF EXISTS `coupon_statistics`;
-DROP TABLE IF EXISTS `coupon_user`;
 DROP TABLE IF EXISTS `coupon_user_code`;
 
 CREATE TABLE `coupon_code`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `coupon_pool_id` int NOT NULL COMMENT 'coupon_pool.id',
   `code` varchar(128) NOT NULL COMMENT '优惠券码',
-  `status` tinyint NOT NULL DEFAULT 0 COMMENT '优惠券当前状态，0：未知，1：冻结，2：已使用，3：已过期',
+  `status` tinyint NOT NULL DEFAULT 0 COMMENT '优惠券当前状态，0：未知，1：待使用，2：冻结，3：已使用，4：已过期',
   `use_start_time` int NOT NULL DEFAULT 0 COMMENT '可使用开始时间',
   `use_end_time` int NOT NULL DEFAULT 0 COMMENT '可使用结束时间',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -32,18 +30,6 @@ CREATE TABLE `coupon_event_record`  (
   PRIMARY KEY (`id`),
   INDEX `idx_user_id`(`user_id`) USING BTREE
 ) COMMENT = '事件流水表';
-
-CREATE TABLE `coupon_platform`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '第三方名称',
-  `access_key` varchar(32) NOT NULL DEFAULT '' COMMENT '访问使用的key',
-  `secret` varchar(32) NOT NULL DEFAULT '' COMMENT '密钥',
-  `join_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '加入时间',
-  `is_inner` tinyint NOT NULL DEFAULT 0 COMMENT '是否为内部平台，0：外部，1：内部',
-  `is_enable` tinyint NOT NULL DEFAULT 1 COMMENT '是否启用，1：启用，0：禁用',
-  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) COMMENT = '优惠券平台主体，接口调用方';
 
 CREATE TABLE `coupon_pool`  (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -69,6 +55,9 @@ CREATE TABLE `coupon_rule`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '规则名称',
   `coupon_type` tinyint NOT NULL COMMENT '优惠券种类，0-未知，1-平台券，2-商家券，3-商品券',
+  `platform_id` int NOT NULL DEFAULT 0 COMMENT '平台id，当coupon_type=1时生效',
+  `merchant_id` int NOT NULL DEFAULT 0 COMMENT '商家id，当coupon_type=2时生效',
+  `product_id` int NOT NULL DEFAULT 0 COMMENT '商品id，当coupon_type=3时生效',
   `channel` tinyint NOT NULL COMMENT '使用渠道，0-未知，1-app，2-小程序，3-web，4-h5',
   `pay` tinyint NOT NULL COMMENT '支付方式，0-未知，1-微信支付，2-支付宝，3-银行卡',
   `region_province` int NOT NULL COMMENT '地区-市',
@@ -94,17 +83,6 @@ CREATE TABLE `coupon_statistics`  (
   PRIMARY KEY (`id`),
   INDEX `idx_coupon_id`(`coupon_pool_id`) USING BTREE
 ) COMMENT = '优惠券统计数据表';
-
-CREATE TABLE `coupon_user`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `platform_id` int NOT NULL COMMENT 'coupon_platform.id',
-  `user_id` int NOT NULL COMMENT '用户id',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '是否删除',
-  PRIMARY KEY (`id`),
-  INDEX `idx_platform_id`(`platform_id`) USING BTREE
-) COMMENT = '各平台用户';
 
 CREATE TABLE `coupon_user_code`  (
   `id` int NOT NULL AUTO_INCREMENT,
